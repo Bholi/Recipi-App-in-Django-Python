@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <h1>Welcome to homepage. My name is {{ request.user.username }} and age is {{age}} years old</h1>
+    <table border="1px solid black" width="50%">
+        <tr>
+            <th>SN</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Vote</th>
+        </tr>
+        {% for i in peoples %}
+        <tr align="center">
+            <td>{{ forloop.counter }}</td>
+            <td>{{ i.name }}</td>
+            <td>{{ i.age }}</td>
+            <td>
+                {% if i.age >= 18 %}
+                Yes
+                {% else %}
+                No
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <p>
+        {{ text|truncatechars:80 }}
+</p>
+   
+<a href="{% url 'about' %}">About page</a>
+<h1>Go to Recipi Page <a href="{% url 'recipi' %}">Recipi</a></h1>
+{% endblock %}
